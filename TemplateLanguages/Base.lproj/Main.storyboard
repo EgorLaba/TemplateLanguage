@@ -25,59 +25,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MLx-lO-Nzp">
                                 <rect key="frame" x="0.0" y="95.5" width="414" height="200"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ASN-tK-u20">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ASN-tK-u20" customClass="LanguageView" customModule="TemplateLanguages" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="207" height="200"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CuO-Ht-83E">
-                                                <rect key="frame" x="63.5" y="60" width="80" height="80"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="80" id="IEE-wA-8Sn"/>
-                                                    <constraint firstAttribute="height" constant="80" id="Lev-zc-0wO"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ct-bU-kiy">
-                                                <rect key="frame" x="40" y="150" width="127" height="21.5"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="CuO-Ht-83E" firstAttribute="centerY" secondItem="ASN-tK-u20" secondAttribute="centerY" id="5gj-uj-99K"/>
-                                            <constraint firstItem="4Ct-bU-kiy" firstAttribute="leading" secondItem="ASN-tK-u20" secondAttribute="leading" constant="40" id="Iy9-gz-D8K"/>
-                                            <constraint firstAttribute="trailing" secondItem="4Ct-bU-kiy" secondAttribute="trailing" constant="40" id="NbI-Ry-k5M"/>
-                                            <constraint firstItem="CuO-Ht-83E" firstAttribute="centerX" secondItem="ASN-tK-u20" secondAttribute="centerX" id="V34-Nj-h3C"/>
-                                            <constraint firstItem="4Ct-bU-kiy" firstAttribute="top" secondItem="CuO-Ht-83E" secondAttribute="bottom" constant="10" id="udi-wD-mY8"/>
-                                        </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="96i-h9-bT4">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="96i-h9-bT4" customClass="LanguageView" customModule="TemplateLanguages" customModuleProvider="target">
                                         <rect key="frame" x="207" y="0.0" width="207" height="200"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JE6-Rj-8t9">
-                                                <rect key="frame" x="40" y="150" width="127" height="21.5"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A8K-Ps-zEU">
-                                                <rect key="frame" x="63.5" y="60" width="80" height="80"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="Iaa-Y3-VnO"/>
-                                                    <constraint firstAttribute="width" constant="80" id="dF9-lh-29e"/>
-                                                </constraints>
-                                            </imageView>
-                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="JE6-Rj-8t9" firstAttribute="top" secondItem="A8K-Ps-zEU" secondAttribute="bottom" constant="10" id="0Lj-LF-KoN"/>
-                                            <constraint firstItem="JE6-Rj-8t9" firstAttribute="leading" secondItem="96i-h9-bT4" secondAttribute="leading" constant="40" id="B23-kf-C9P"/>
-                                            <constraint firstItem="A8K-Ps-zEU" firstAttribute="centerY" secondItem="96i-h9-bT4" secondAttribute="centerY" id="NqM-wk-kSX"/>
-                                            <constraint firstItem="A8K-Ps-zEU" firstAttribute="centerX" secondItem="96i-h9-bT4" secondAttribute="centerX" id="VeX-dx-FEa"/>
-                                            <constraint firstAttribute="trailing" secondItem="JE6-Rj-8t9" secondAttribute="trailing" constant="40" id="pBd-KM-4VK"/>
-                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -193,18 +147,14 @@
                     <connections>
                         <outlet property="searchLanguage" destination="O2A-K1-xT9" id="YBm-3v-oWB"/>
                         <outlet property="selectedLanguagesView" destination="MLx-lO-Nzp" id="g7O-rK-f25"/>
-                        <outlet property="sourceImageView" destination="CuO-Ht-83E" id="AOc-py-5UC"/>
-                        <outlet property="sourceNameLabel" destination="4Ct-bU-kiy" id="EX2-7L-VzH"/>
-                        <outlet property="sourceView" destination="ASN-tK-u20" id="FIF-Fu-4hA"/>
+                        <outlet property="sourceView" destination="ASN-tK-u20" id="OPB-Ud-4ir"/>
                         <outlet property="tableView" destination="nLj-Xk-iNH" id="e5y-Xm-Fmn"/>
-                        <outlet property="targetImageView" destination="A8K-Ps-zEU" id="xaU-Bk-ekX"/>
-                        <outlet property="targetNameLabel" destination="JE6-Rj-8t9" id="NEL-M2-sF0"/>
-                        <outlet property="targetView" destination="96i-h9-bT4" id="UXi-fe-r1R"/>
+                        <outlet property="targetView" destination="96i-h9-bT4" id="iS6-9r-R5J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
+            <point key="canvasLocation" x="46" y="98"/>
         </scene>
     </scenes>
     <resources>

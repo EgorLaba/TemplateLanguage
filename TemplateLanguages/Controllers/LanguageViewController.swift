@@ -19,12 +19,9 @@ class LanguageViewController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var sourceView: UIView!
-    @IBOutlet weak var targetView: UIView!
-    @IBOutlet weak var sourceImageView: UIImageView!
-    @IBOutlet weak var targetImageView: UIImageView!
-    @IBOutlet weak var sourceNameLabel: UILabel!
-    @IBOutlet weak var targetNameLabel: UILabel!
+    
+    @IBOutlet weak var sourceView: LanguageView!
+    @IBOutlet weak var targetView: LanguageView!
     @IBOutlet weak var selectedLanguagesView: UIView!
     @IBOutlet weak var searchLanguage: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -63,14 +60,13 @@ class LanguageViewController: UIViewController {
         let targetTapView = UITapGestureRecognizer(target: self, action: #selector(didTouchTargetView))
         targetView.addGestureRecognizer(targetTapView)
         
-        
         roundCorners()
         
         tableView.delegate = self
         tableView.dataSource = self
         
-        sourceImageView.layer.cornerRadius = languageRadius
-        targetImageView.layer.cornerRadius = languageRadius
+        sourceView.languageImageView.layer.cornerRadius = languageRadius
+        targetView.languageImageView.layer.cornerRadius = languageRadius
     }
     
     private func roundCorners() {
@@ -106,10 +102,10 @@ class LanguageViewController: UIViewController {
     }
     
     private func updateChoosenLanguages() {
-        sourceImageView.image = sourceLanguage?.flagPath
-        sourceNameLabel.text = sourceLanguage?.name.uppercased()
-        targetImageView.image = targetLanguage?.flagPath
-        targetNameLabel.text = targetLanguage?.name.uppercased()
+        sourceView.languageImageView.image = sourceLanguage?.flagPath
+        sourceView.languageNameLabel.text = sourceLanguage?.name.uppercased()
+        targetView.languageImageView.image = sourceLanguage?.flagPath
+        targetView.languageNameLabel.text = targetLanguage?.name.uppercased()
     }
 }
 
