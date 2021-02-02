@@ -1,33 +1,31 @@
 import UIKit
 
+// MARK: - Enums
+
+enum SelectedLanguageView {
+    case source
+    case target
+}
+
 class LanguageViewController: UIViewController {
     
-    // MARK: - Variables
-    
     private var languages: [Language] = []
-    
     private var sourceLanguage: Language?
     private var targetLanguage: Language?
-    
     private var isChoosenSource: Bool = false
     private let backgroundColor: UIColor = UIColor(named: "blue")!
     private let selectedGray: UIColor = UIColor(named: "selectedGray")!
-    private let alpha: CGFloat = 0.5
-    private let radius: CGFloat = 30
-    private let languageRadius: CGFloat = 40
+    private let radiusLayer: CGFloat = 40
+    private let languageRadius: CGFloat = 35
     
-    
-    // MARK: - Outlets
-    
-    
-    @IBOutlet weak var sourceView: LanguageView!
-    @IBOutlet weak var targetView: LanguageView!
-    @IBOutlet weak var selectedLanguagesView: UIView!
-    @IBOutlet weak var searchLanguage: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var sourceView: LanguageView!
+    @IBOutlet private weak var targetView: LanguageView!
+    @IBOutlet private weak var selectedLanguagesView: UIView!
+    @IBOutlet private weak var searchLanguage: UISearchBar!
+    @IBOutlet private weak var tableView: UITableView!
     
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         chooseSourceLanguage()
@@ -38,7 +36,7 @@ class LanguageViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        roundCorners()
+        makeRoundCorners()
     }
     
     // MARK: - Actions
@@ -60,20 +58,28 @@ class LanguageViewController: UIViewController {
         let targetTapView = UITapGestureRecognizer(target: self, action: #selector(didTouchTargetView))
         targetView.addGestureRecognizer(targetTapView)
         
-        roundCorners()
-        
         tableView.delegate = self
         tableView.dataSource = self
+       
+        sourceView.languageImageViewCornerRadius = languageRadius
+        targetView.languageImageViewCornerRadius = languageRadius
         
-        sourceView.languageImageView.layer.cornerRadius = languageRadius
-        targetView.languageImageView.layer.cornerRadius = languageRadius
+        makeRoundCorners()
+        configureSearch()
     }
     
-    private func roundCorners() {
-        let path = UIBezierPath(roundedRect: selectedLanguagesView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: radius, height: radius))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        selectedLanguagesView.layer.mask = mask
+    private func configureSearch() {
+        let textField = searchLanguage.value(forKey: "searchField") as! UITextField
+        let glassIconView = textField.leftView as! UIImageView
+        glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
+        glassIconView.tintColor = .white
+    }
+    
+    private func makeRoundCorners() {
+        let path = UIBezierPath(roundedRect: selectedLanguagesView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: radiusLayer, height: radiusLayer))
+        let layerMask = CAShapeLayer()
+        layerMask.path = path.cgPath
+        selectedLanguagesView.layer.mask = layerMask
     }
     
     private func createLanguages() {
@@ -102,10 +108,13 @@ class LanguageViewController: UIViewController {
     }
     
     private func updateChoosenLanguages() {
-        sourceView.languageImageView.image = sourceLanguage?.flagPath
-        sourceView.languageNameLabel.text = sourceLanguage?.name.uppercased()
-        targetView.languageImageView.image = sourceLanguage?.flagPath
-        targetView.languageNameLabel.text = targetLanguage?.name.uppercased()
+        if let sourceLanguage = sourceLanguage {
+            sourceView.setup(with: sourceLanguage)
+        }
+        
+        if let targetLanguage = targetLanguage {
+            targetView.setup(with: targetLanguage)
+        }
     }
 }
 

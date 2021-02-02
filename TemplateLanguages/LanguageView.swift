@@ -4,8 +4,19 @@ class LanguageView: UIView {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var languageImageView: UIImageView!
-    @IBOutlet weak var languageNameLabel: UILabel!
+    @IBOutlet private var contentView: UIView!
+    @IBOutlet private weak var languageImageView: UIImageView!
+    @IBOutlet private weak var languageNameLabel: UILabel!
+    
+    var languageImageViewCornerRadius: CGFloat {
+        set { languageImageView.layer.cornerRadius = newValue }
+        get { languageImageView.layer.cornerRadius }
+    }
+    
+    var languageName: String? {
+        set { languageNameLabel.text = newValue }
+        get { languageNameLabel.text }
+    }
     
     // MARK: - Init
     
@@ -14,12 +25,24 @@ class LanguageView: UIView {
         loadViewFromXib()
     }
     
+    // MARK: - Public
+    
+    func setup(with language: Language) {
+        languageNameLabel.text = language.name
+        languageImageView.image = language.flagPath
+    }
+    
+    func setImageViewCornerRadius(_ value: CGFloat) {
+        languageImageView.layer.masksToBounds = true
+        languageImageView.layer.cornerRadius = value
+    }
+    
     // MARK: - Private
     
     private func loadViewFromXib() {
-        let viewFromXib = Bundle.main.loadNibNamed("LanguageView", owner: self, options: nil)?[0] as! UIView
-        viewFromXib.frame = self.bounds
-        addSubview(viewFromXib)
+        Bundle.main.loadNibNamed("LanguageView", owner: self, options: nil)
+        addSubview(contentView)
+        contentView.frame = self.bounds
     }
 }
 

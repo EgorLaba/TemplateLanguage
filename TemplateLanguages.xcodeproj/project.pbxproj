@@ -61,6 +61,14 @@
 			path = LanguageXibView;
 			sourceTree = "<group>";
 		};
+		749F006C25C88A2A005B79F7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				74E3FA1C25C6A1720079CE45 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		74A29CC025C71E2900553637 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +91,9 @@
 			children = (
 				74E3FA1225C6A1710079CE45 /* TemplateLanguages */,
 				74E3FA2C25C712FC0079CE45 /* Model */,
+				74A29CC025C71E2900553637 /* Cells */,
+				74A29CC225C71EA400553637 /* Controllers */,
+				749F006C25C88A2A005B79F7 /* Resources */,
 				74E3FA1125C6A1710079CE45 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,12 +112,9 @@
 				74E3FA1325C6A1710079CE45 /* AppDelegate.swift */,
 				74E3FA1525C6A1710079CE45 /* SceneDelegate.swift */,
 				74E3FA1925C6A1710079CE45 /* Main.storyboard */,
-				74E3FA1C25C6A1720079CE45 /* Assets.xcassets */,
 				74E3FA1E25C6A1720079CE45 /* LaunchScreen.storyboard */,
 				7463F50825C7F064004D1719 /* LanguageView.swift */,
 				74E3FA2125C6A1720079CE45 /* Info.plist */,
-				74A29CC225C71EA400553637 /* Controllers */,
-				74A29CC025C71E2900553637 /* Cells */,
 			);
 			path = TemplateLanguages;
 			sourceTree = "<group>";

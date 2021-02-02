@@ -18,6 +18,6 @@ class LanguageCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        imageView?.layer.cornerRadius = radius
+        languageImageView?.layer.cornerRadius = radius
     }
 }
