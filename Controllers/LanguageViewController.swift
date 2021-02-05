@@ -7,16 +7,34 @@ enum SelectedLanguageView {
     case target
 }
 
+fileprivate extension LanguageViewController {
+    struct Constants {
+        static let languagesArray: [Language] = [
+            "ru",
+            "no",
+            "pl",
+            "pt",
+            "ro",
+            "us",
+            "ua",
+            "tr",
+            "sk",
+            "sl"
+        ].compactMap { Language(languageCode: $0) }
+    }
+}
+
 class LanguageViewController: UIViewController {
+    private var languages: [Language] { Constants.languagesArray }
+    private var sourceLanguage: Language = Constants.languagesArray[0]
+    private var targetLanguage: Language = Constants.languagesArray[1]
+    private var selectedLanguageView: SelectedLanguageView = .source
     
-    private var languages: [Language] = []
-    private var sourceLanguage: Language?
-    private var targetLanguage: Language?
-    private var isChoosenSource: Bool = false
+    private let heightForRow: CGFloat = 100
     private let backgroundColor: UIColor = UIColor(named: "blue")!
     private let selectedGray: UIColor = UIColor(named: "selectedGray")!
-    private let radiusLayer: CGFloat = 40
-    private let languageRadius: CGFloat = 35
+    private let cornerRadii: CGFloat = 40
+    private let languageImageRadius: CGFloat = 35
     
     @IBOutlet private weak var sourceView: LanguageView!
     @IBOutlet private weak var targetView: LanguageView!
@@ -25,28 +43,33 @@ class LanguageViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        chooseSourceLanguage()
-        createLanguages()
         
         configureUI()
+        updateChoosenLanguages()
+        selectLanguageView(sourceView)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         makeRoundCorners()
     }
     
     // MARK: - Actions
     
     @objc func didTouchSourceView(_ gesture: UITapGestureRecognizer) {
-        chooseSourceLanguage()
+        selectedLanguageView = .source
+        deselectLanguageView(targetView)
+        selectLanguageView(sourceView)
     }
     
     @objc func didTouchTargetView(_ gesture: UITapGestureRecognizer) {
-        chooseTargetLanguage()
+        selectedLanguageView = .target
+        deselectLanguageView(sourceView)
+        selectLanguageView(targetView)
     }
     
     // MARK: - Private
@@ -58,63 +81,45 @@ class LanguageViewController: UIViewController {
         let targetTapView = UITapGestureRecognizer(target: self, action: #selector(didTouchTargetView))
         targetView.addGestureRecognizer(targetTapView)
         
-        tableView.delegate = self
-        tableView.dataSource = self
-       
-        sourceView.languageImageViewCornerRadius = languageRadius
-        targetView.languageImageViewCornerRadius = languageRadius
+        sourceView.languageImageViewCornerRadius = languageImageRadius
+        targetView.languageImageViewCornerRadius = languageImageRadius
         
-        makeRoundCorners()
         configureSearch()
+        
+        tableView.register(LanguageTableViewCell.self)
     }
     
     private func configureSearch() {
-        let textField = searchLanguage.value(forKey: "searchField") as! UITextField
+        guard let textField = searchLanguage.value(forKey: "searchField") as? UITextField else { fatalError() }
+        
         let glassIconView = textField.leftView as! UIImageView
         glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
         glassIconView.tintColor = .white
     }
     
     private func makeRoundCorners() {
-        let path = UIBezierPath(roundedRect: selectedLanguagesView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: radiusLayer, height: radiusLayer))
         let layerMask = CAShapeLayer()
-        layerMask.path = path.cgPath
+        
+        layerMask.path = UIBezierPath(
+            roundedRect: selectedLanguagesView.bounds,
+            byRoundingCorners: [.topLeft, .topRight],
+            cornerRadii: CGSize(width: cornerRadii, height: cornerRadii)
+        ).cgPath
+        
         selectedLanguagesView.layer.mask = layerMask
     }
     
-    private func createLanguages() {
-        languages.append(contentsOf: [Language(name: "Russian", flagPath: UIImage(named: "ru")),
-                                      Language(name: "English", flagPath:  UIImage(named: "us")),
-                                      Language(name: "Polish", flagPath: UIImage(named:  "pl")),
-                                      Language(name: "Portuguese", flagPath: UIImage(named: "pt")),
-                                      Language(name: "Romanian", flagPath: UIImage(named: "ro")),
-                                      Language(name: "Norwegian", flagPath: UIImage(named: "no")),
-                                      Language(name: "Ukrainian", flagPath: UIImage(named: "ua")),
-                                      Language(name: "Turkish", flagPath: UIImage(named: "tr")),
-                                      Language(name: "Slovak", flagPath: UIImage(named: "sk")),
-                                      Language(name: "Slovenian", flagPath: UIImage(named: "sl"))])
-    }
-    
-    private func chooseSourceLanguage() {
-        isChoosenSource = true
-        sourceView.backgroundColor = selectedGray
-        targetView.backgroundColor = backgroundColor
-    }
-    
-    private func chooseTargetLanguage() {
-        isChoosenSource = false
-        sourceView.backgroundColor = backgroundColor
-        targetView.backgroundColor = selectedGray
-    }
-    
     private func updateChoosenLanguages() {
-        if let sourceLanguage = sourceLanguage {
-            sourceView.setup(with: sourceLanguage)
-        }
-        
-        if let targetLanguage = targetLanguage {
-            targetView.setup(with: targetLanguage)
-        }
+        sourceView.setup(with: sourceLanguage)
+        targetView.setup(with: targetLanguage)
+    }
+    
+    private func selectLanguageView(_ view: UIView) {
+        view.backgroundColor = selectedGray
+    }
+    
+    private func deselectLanguageView(_ view: UIView) {
+        sourceView.backgroundColor = backgroundColor
     }
 }
 
@@ -122,30 +127,34 @@ class LanguageViewController: UIViewController {
 
 extension LanguageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        languages.count
+        return languages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LanguageCell", for: indexPath) as! LanguageCell
+        let cell = tableView.dequeueReusableCell(for: LanguageTableViewCell.self, for: indexPath)
+        
         let language = languages[indexPath.row]
-        cell.languageLabel.text = language.name
-        cell.languageImageView.image = language.flagPath
+        cell.configureCell(language)
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = languages[indexPath.row]
-        if isChoosenSource {
-            sourceLanguage = row
-        } else {
-            targetLanguage = row
+        
+        switch selectedLanguageView {
+            case .source:
+                sourceLanguage = row
+                sourceView.setup(with: sourceLanguage)
+            case .target:
+                targetLanguage = row
+                targetView.setup(with: targetLanguage)
         }
-        updateChoosenLanguages()
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return heightForRow
     }
 }
-
 

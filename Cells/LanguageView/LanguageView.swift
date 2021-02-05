@@ -4,7 +4,7 @@ class LanguageView: UIView {
     
     // MARK: - Outlets
     
-    @IBOutlet private var contentView: UIView!
+    @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var languageImageView: UIImageView!
     @IBOutlet private weak var languageNameLabel: UILabel!
     
@@ -28,8 +28,8 @@ class LanguageView: UIView {
     // MARK: - Public
     
     func setup(with language: Language) {
-        languageNameLabel.text = language.name
-        languageImageView.image = language.flagPath
+        languageNameLabel.text = language.name.uppercased()
+        languageImageView.image = language.flagImage
     }
     
     func setImageViewCornerRadius(_ value: CGFloat) {

@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		742D702B25CC27ED00467403 /* UITableViewCell+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742D702A25CC27ED00467403 /* UITableViewCell+Helper.swift */; };
+		742D703425CC28AF00467403 /* LanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742D703225CC28AF00467403 /* LanguageTableViewCell.xib */; };
+		742D703A25CC3B9400467403 /* UITableView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742D703925CC3B9400467403 /* UITableView+Helper.swift */; };
 		7463F50925C7F064004D1719 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463F50825C7F064004D1719 /* LanguageView.swift */; };
 		74A29CBE25C71E2000553637 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A29CBD25C71E2000553637 /* LanguageViewController.swift */; };
-		74A29CCB25C7DC1400553637 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A29CC925C7DC1400553637 /* LanguageCell.swift */; };
+		74A29CCB25C7DC1400553637 /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A29CC925C7DC1400553637 /* LanguageTableViewCell.swift */; };
 		74A29CDD25C7EF0900553637 /* LanguageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74A29CDC25C7EF0900553637 /* LanguageView.xib */; };
 		74E3FA1425C6A1710079CE45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E3FA1325C6A1710079CE45 /* AppDelegate.swift */; };
 		74E3FA1625C6A1710079CE45 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E3FA1525C6A1710079CE45 /* SceneDelegate.swift */; };
@@ -20,9 +23,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		742D702A25CC27ED00467403 /* UITableViewCell+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Helper.swift"; sourceTree = "<group>"; };
+		742D703225CC28AF00467403 /* LanguageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageTableViewCell.xib; sourceTree = "<group>"; };
+		742D703925CC3B9400467403 /* UITableView+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Helper.swift"; sourceTree = "<group>"; };
 		7463F50825C7F064004D1719 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
 		74A29CBD25C71E2000553637 /* LanguageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
-		74A29CC925C7DC1400553637 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
+		74A29CC925C7DC1400553637 /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
 		74A29CDC25C7EF0900553637 /* LanguageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageView.xib; sourceTree = "<group>"; };
 		74E3FA1025C6A1710079CE45 /* TemplateLanguages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TemplateLanguages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E3FA1325C6A1710079CE45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,20 +51,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		742D702925CC27D900467403 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				742D702A25CC27ED00467403 /* UITableViewCell+Helper.swift */,
+				742D703925CC3B9400467403 /* UITableView+Helper.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		7496F38E25C82CDB003F6F88 /* LanguageCell */ = {
 			isa = PBXGroup;
 			children = (
-				74A29CC925C7DC1400553637 /* LanguageCell.swift */,
+				742D703225CC28AF00467403 /* LanguageTableViewCell.xib */,
+				74A29CC925C7DC1400553637 /* LanguageTableViewCell.swift */,
 			);
 			path = LanguageCell;
 			sourceTree = "<group>";
 		};
-		7496F39025C82CEC003F6F88 /* LanguageXibView */ = {
+		7496F39025C82CEC003F6F88 /* LanguageView */ = {
 			isa = PBXGroup;
 			children = (
 				74A29CDC25C7EF0900553637 /* LanguageView.xib */,
+				7463F50825C7F064004D1719 /* LanguageView.swift */,
 			);
-			path = LanguageXibView;
+			path = LanguageView;
 			sourceTree = "<group>";
 		};
 		749F006C25C88A2A005B79F7 /* Resources */ = {
@@ -73,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				7496F38E25C82CDB003F6F88 /* LanguageCell */,
-				7496F39025C82CEC003F6F88 /* LanguageXibView */,
+				7496F39025C82CEC003F6F88 /* LanguageView */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -109,11 +126,11 @@
 		74E3FA1225C6A1710079CE45 /* TemplateLanguages */ = {
 			isa = PBXGroup;
 			children = (
+				742D702925CC27D900467403 /* Extension */,
 				74E3FA1325C6A1710079CE45 /* AppDelegate.swift */,
 				74E3FA1525C6A1710079CE45 /* SceneDelegate.swift */,
 				74E3FA1925C6A1710079CE45 /* Main.storyboard */,
 				74E3FA1E25C6A1720079CE45 /* LaunchScreen.storyboard */,
-				7463F50825C7F064004D1719 /* LanguageView.swift */,
 				74E3FA2125C6A1720079CE45 /* Info.plist */,
 			);
 			path = TemplateLanguages;
@@ -186,6 +203,7 @@
 			files = (
 				74A29CDD25C7EF0900553637 /* LanguageView.xib in Resources */,
 				74E3FA2025C6A1720079CE45 /* LaunchScreen.storyboard in Resources */,
+				742D703425CC28AF00467403 /* LanguageTableViewCell.xib in Resources */,
 				74E3FA1D25C6A1720079CE45 /* Assets.xcassets in Resources */,
 				74E3FA1B25C6A1710079CE45 /* Main.storyboard in Resources */,
 			);
@@ -200,10 +218,12 @@
 			files = (
 				74E3FA2A25C712EA0079CE45 /* Language.swift in Sources */,
 				74E3FA1425C6A1710079CE45 /* AppDelegate.swift in Sources */,
+				742D702B25CC27ED00467403 /* UITableViewCell+Helper.swift in Sources */,
 				74A29CBE25C71E2000553637 /* LanguageViewController.swift in Sources */,
-				74A29CCB25C7DC1400553637 /* LanguageCell.swift in Sources */,
+				74A29CCB25C7DC1400553637 /* LanguageTableViewCell.swift in Sources */,
 				7463F50925C7F064004D1719 /* LanguageView.swift in Sources */,
 				74E3FA1625C6A1710079CE45 /* SceneDelegate.swift in Sources */,
+				742D703A25CC3B9400467403 /* UITableView+Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
